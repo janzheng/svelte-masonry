@@ -1,16 +1,16 @@
 {
   "name": "svelte-masonry",
   "description": "Basic implementation of Masonry for svelte",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "svelte": "Masonry.svelte",
   "repository": "https://github.com/janzheng/svelte-masonry",
   "author": "Jan Zheng",
-  "license": "LIL",
+  "license": "none",
   "keywords": [
     "svelte", "masonry"
   ],
   "files": [
-    "/src/components/Masonry.svelte"
+    "Masonry.svelte"
   ],
 
   "scripts": {

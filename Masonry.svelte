@@ -22,17 +22,13 @@
  -->
 
 
-<template>
 
-  <div bind:this={masonryElement} 
-       class={`__grid--masonry ${stretchFirst ? '__stretch-first' : ''}`}
-       style="--grid-gap: {gridGap}; --col-width: {colWidth}; "
-       >
-    <slot></slot>
-  </div>
-
-</template>
-
+<div bind:this={masonryElement} 
+     class={`__grid--masonry ${stretchFirst ? '__stretch-first' : ''}`}
+     style="--grid-gap: {gridGap}; --col-width: {colWidth}; "
+     >
+  <slot></slot>
+</div>
 
 
 
@@ -115,20 +111,22 @@ $: if(masonryElement) {
 
 </script>
 
+<!-- 
+  $w: var(--col-width); // minmax(Min(20em, 100%), 1fr);
+  $s: var(--grid-gap); // .5em;
+ -->
 
-<style type="text/scss">
+<style>
 
-	$w: var(--col-width); // minmax(Min(20em, 100%), 1fr);
-	$s: var(--grid-gap); // .5em;
 
 	:global(.__grid--masonry) {
 
 	  display: grid;
-	  grid-template-columns: repeat(auto-fit, $w);
+	  grid-template-columns: repeat(auto-fit, var(--col-width));
 	  grid-template-rows: masonry;
 	  justify-content: center;
-	  grid-gap: $s;
-	  padding: $s;
+	  grid-gap: var(--grid-gap);
+	  padding: var(--grid-gap);
 	  
 	}
 
@@ -136,8 +134,7 @@ $: if(masonryElement) {
 		align-self: start 
 	}
 
-	// add this class to stretch the first item
-	:global(.__grid--masonry.__stretch-first > :first-child) { 
+	:global(.__grid--masonry.__stretch-first > *:first-child) { 
   	grid-column: 1/ -1;
   }
 
