@@ -1,7 +1,7 @@
 {
   "name": "svelte-masonry",
   "description": "Basic implementation of Masonry for svelte",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "svelte": "Masonry.svelte",
   "repository": "https://github.com/janzheng/svelte-masonry",
   "author": "Jan Zheng",

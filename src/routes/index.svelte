@@ -14,7 +14,7 @@
   </div>
 
 
-  <Masonry stretchFirst={true} gridGap={'0.5rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'}>
+  <Masonry stretchFirst={true} gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'}>
     {#each data as o}
       <div class="_card _padding">
         <header>
