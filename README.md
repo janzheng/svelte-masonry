@@ -54,11 +54,11 @@ Peace
 
 ### Options
 
-There are a few options
+There are a few options you can pass to the Svelte component.
 
-- stretchFirst
-- grid-gap
-- col-width
+- `stretchFirst` (default: `false`): Setting `stretchFirst={true}` will stretch the first item across all items
+- `grid-gap` (default: `.5em;`): Sets the grid gap and padding for each element 
+- `col-width` (default: `minmax(Min(20em, 100%), 1fr);`): Sets the width of each column. The default allows for some leeway before the grids collapse.
 
 
 
