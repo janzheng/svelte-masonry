@@ -47,12 +47,11 @@ Now you can use it as component and wrap around your repeating `{#each}` blocks.
 
 If you have any implementation questions, please hit me up on twitter @yawnxyz or create an issue.
 
-Peace
 
 
 
 
-### Options
+## Options
 
 There are a few options you can pass to the Svelte component.
 
