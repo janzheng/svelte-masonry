@@ -1,9 +1,9 @@
 <!-- 
 
-	An almost direct copy and paste of: https://css-tricks.com/a-lightweight-masonry-solution
+  An almost direct copy and paste of: https://css-tricks.com/a-lightweight-masonry-solution
 
-	Usage:
-		- stretchFirst stretches the first item across the top
+  Usage:
+    - stretchFirst stretches the first item across the top
 
   <Masonry stretchFirst={true} >
     {#each data as o}
@@ -22,13 +22,17 @@
  -->
 
 
+<template>
 
-<div bind:this={masonryElement} 
-     class={`__grid--masonry ${stretchFirst ? '__stretch-first' : ''}`}
-     style="--grid-gap: {gridGap}; --col-width: {colWidth}; "
-     >
-  <slot></slot>
-</div>
+  <div bind:this={masonryElement} 
+       class={`__grid--masonry ${stretchFirst ? '__stretch-first' : ''}`}
+       style={`--grid-gap: ${gridGap}; --col-width: ${colWidth};`}
+       >
+    <slot></slot>
+  </div>
+
+</template>
+
 
 
 
@@ -82,13 +86,14 @@ const layout = async () => {
 
 let _window
 onMount(() => {
+  console.log('-------masonry onmount', masonryElement, colWidth, gridGap)
   _window = window
   _window.addEventListener('resize', layout, false) /* on resize */
 })
 
 onDestroy(() => {
   if(_window) {
-  	_window.removeEventListener('resize', layout, false) /* on resize */
+    _window.removeEventListener('resize', layout, false) /* on resize */
   }
 })
 
@@ -111,31 +116,30 @@ $: if(masonryElement) {
 
 </script>
 
-<!-- 
+
+<style type="text/scss">
+
   $w: var(--col-width); // minmax(Min(20em, 100%), 1fr);
   $s: var(--grid-gap); // .5em;
- -->
 
-<style>
+  :global(.__grid--masonry) {
 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, $w);
+    grid-template-rows: masonry;
+    justify-content: center;
+    grid-gap: $s;
+    padding: $s;
+    
+  }
 
-	:global(.__grid--masonry) {
+  :global(.__grid--masonry > *) { 
+    align-self: start 
+  }
 
-	  display: grid;
-	  grid-template-columns: repeat(auto-fit, var(--col-width));
-	  grid-template-rows: masonry;
-	  justify-content: center;
-	  grid-gap: var(--grid-gap);
-	  padding: var(--grid-gap);
-	  
-	}
-
-	:global(.__grid--masonry > *) { 
-		align-self: start 
-	}
-
-	:global(.__grid--masonry.__stretch-first > *:first-child) { 
-  	grid-column: 1/ -1;
+  // add this class to stretch the first item
+  :global(.__grid--masonry.__stretch-first > :first-child) { 
+    grid-column: 1/ -1;
   }
 
 </style>

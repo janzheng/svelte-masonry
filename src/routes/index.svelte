@@ -7,7 +7,7 @@
 
 <template>
 
-  <div class="_section-article _margin-center">
+  <div class="_section-content _margin-center">
     <h1>Masonry Demo</h1>
     <p>Here's a pretty basic demo on how the Masonry code works. This is an implementation of Masonry based on this excellent article by Ana Tudor (@anatudor) on CSS Tricks: <a href="https://css-tricks.com/a-lightweight-masonry-solution">https://css-tricks.com/a-lightweight-masonry-solution</a>
     </p>
