@@ -33,10 +33,10 @@ import { onMount, onDestroy, getContext, setContext, tick } from 'svelte'
 export let  stretchFirst = false,
             gridGap = '0.5em',
             colWidth = 'minmax(Min(20em, 100%), 1fr)',
-            items // pass in data if it's dynamically updated
+            items = [] // pass in data if it's dynamically updated
 let grids = [], masonryElement
 
-const refreshLayout = async () => {
+export const refreshLayout = async () => {
   grids.forEach(async grid => {
     /* get the post relayout number of columns */
     let ncol = getComputedStyle(grid._el).gridTemplateColumns.split(' ').length
@@ -102,7 +102,7 @@ onDestroy(() => {
 })
   
   
-$: if(masonryElement) {
+$: if(masonryElement) { 
   calcGrid([masonryElement])
 }
   
@@ -133,4 +133,3 @@ $: if(items) { // update if items are changed
     grid-column: 1/ -1;
   }
 </style>
-
