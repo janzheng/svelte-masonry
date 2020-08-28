@@ -49,6 +49,9 @@ If you have any implementation questions, please hit me up on twitter @yawnxyz o
 
 
 
+## Manually Refreshing
+
+Sometimes you might need to dynamically refresh the grid calculations. You can do this by binding `refreshLayout` like so: `bind:refreshLayout={refreshLayout}` and then calling that function when everything's finished loading. Here's an example: https://svelte.dev/repl/2c5a8e5ae579471ea22b3f5561268d11?version=3.24.1
 
 
 ## Options
