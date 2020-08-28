@@ -1,10 +1,7 @@
 <!-- 
-
-	An almost direct copy and paste of: https://css-tricks.com/a-lightweight-masonry-solution
-
-	Usage:
-		- stretchFirst stretches the first item across the top
-
+  An almost direct copy and paste of: https://css-tricks.com/a-lightweight-masonry-solution
+  Usage:
+    - stretchFirst stretches the first item across the top
   <Masonry stretchFirst={true} >
     {#each data as o}
       <div class="_card _padding">
@@ -13,12 +10,11 @@
           <h3>{o.name}</h3>
         </header>
         <section>
-          <p>{o.text}</p>
+          <p>{o.text}</p> 
         </section>
       </div>
     {/each}
   </Masonry>
-
  -->
 
 
@@ -33,16 +29,14 @@
 
 
 <script>
-
-import { onMount, onDestroy, getContext, setContext } from 'svelte'
-
+import { onMount, onDestroy, getContext, setContext, tick } from 'svelte'
 export let  stretchFirst = false,
             gridGap = '0.5em',
-            colWidth = 'minmax(Min(20em, 100%), 1fr)'
-
+            colWidth = 'minmax(Min(20em, 100%), 1fr)',
+            items // pass in data if it's dynamically updated
 let grids = [], masonryElement
 
-const layout = async () => {
+const refreshLayout = async () => {
   grids.forEach(async grid => {
     /* get the post relayout number of columns */
     let ncol = getComputedStyle(grid._el).gridTemplateColumns.split(' ').length
@@ -58,13 +52,10 @@ const layout = async () => {
     
     /* if the number of columns has changed */
     if(grid.ncol !== ncol || grid.mod) {
-
-      /* update number of columns */
+      /* update number of columns */ 
       grid.ncol = ncol;
-
       /* revert to initial positioning, no margin */
       grid.items.forEach(c => c.style.removeProperty('margin-top'))
-
       /* if we have more than one column */
       if(grid.ncol > 1) {
         grid.items.slice(ncol).forEach((c, i) => {
@@ -80,35 +71,44 @@ const layout = async () => {
   })
 }
 
-let _window
-onMount(() => {
-  _window = window
-  _window.addEventListener('resize', layout, false) /* on resize */
-})
-
-onDestroy(() => {
-  if(_window) {
-  	_window.removeEventListener('resize', layout, false) /* on resize */
-  }
-})
-
-
-$: if(masonryElement) {
-  grids = [masonryElement]
-  if(grids.length && getComputedStyle(grids[0]).gridTemplateRows !== 'masonry') {
-    grids = grids.map(grid => ({
-      _el: grid, 
-      gap: parseFloat(getComputedStyle(grid).gridRowGap),
-      items: [...grid.childNodes].filter(c => c.nodeType === 1 && +getComputedStyle(c).gridColumnEnd !== -1), 
-      ncol: 0, 
-      mod: 0
-    }))
-
-    layout() /* initial load */
+const calcGrid = async (_masonryArr) => {
+  await tick()
+  if(_masonryArr.length && getComputedStyle(_masonryArr[0]).gridTemplateRows !== 'masonry') {
+    grids = _masonryArr.map(grid => {
+        return {
+          _el: grid, 
+          gap: parseFloat(getComputedStyle(grid).gridRowGap),
+          items: [...grid.childNodes].filter(c => c.nodeType === 1 && +getComputedStyle(c).gridColumnEnd !== -1), 
+          ncol: 0, 
+          mod: 0
+        }
+    })
+    refreshLayout() /* initial load */
   }
 }
 
 
+
+
+let _window
+onMount(() => {
+  _window = window
+  _window.addEventListener('resize', refreshLayout, false) /* on resize */
+})
+onDestroy(() => {
+  if(_window) {
+    _window.removeEventListener('resize', refreshLayout, false) /* on resize */
+  }
+})
+  
+  
+$: if(masonryElement) {
+  calcGrid([masonryElement])
+}
+  
+$: if(items) { // update if items are changed
+  masonryElement = masonryElement // refresh masonryElement
+}
 </script>
 
 <!-- 
@@ -117,29 +117,20 @@ $: if(masonryElement) {
  -->
 
 <style>
-
-
-	:global(.__grid--masonry) {
-
-	  display: grid;
-	  grid-template-columns: repeat(auto-fit, var(--col-width));
-	  grid-template-rows: masonry;
-	  justify-content: center;
-	  grid-gap: var(--grid-gap);
-	  padding: var(--grid-gap);
-	  
-	}
-
-	:global(.__grid--masonry > *) { 
-		align-self: start 
-	}
-
-	:global(.__grid--masonry.__stretch-first > *:first-child) { 
-  	grid-column: 1/ -1;
+  :global(.__grid--masonry) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, var(--col-width));
+    grid-template-rows: masonry;
+    justify-content: center;
+    grid-gap: var(--grid-gap);
+    padding: var(--grid-gap);
+    
   }
-
+  :global(.__grid--masonry > *) { 
+    align-self: start 
+  }
+  :global(.__grid--masonry.__stretch-first > *:first-child) { 
+    grid-column: 1/ -1;
+  }
 </style>
-
-
-
 

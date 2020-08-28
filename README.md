@@ -53,11 +53,12 @@ If you have any implementation questions, please hit me up on twitter @yawnxyz o
 
 ## Options
 
-There are a few options you can pass to the Svelte component.
+There are a few props you can pass to the Svelte component as options.
 
 - `stretchFirst` (default: `false`): Setting `stretchFirst={true}` will stretch the first item across all items
 - `gridGap` (default: `".5em;"`): This is a CSS value that sets the grid gap and padding for each element 
 - `colWidth` (default: `"minmax(Min(20em, 100%), 1fr);"`): This is a CSS value that sets the width of each column. The default allows for some leeway before the grids collapse.
+- `items` (default: `[]`): Set this to your array of data if you have dynamic items and want masonry to recalculate when you add new items
 
 
 

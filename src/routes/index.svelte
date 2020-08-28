@@ -1,45 +1,15 @@
-<!-- 
 
-  Masonry demo page
-
- -->
-
-
-<template>
-
-  <div class="_section-content _margin-center">
-    <h1>Masonry Demo</h1>
-    <p>Here's a pretty basic demo on how the Masonry code works. This is an implementation of Masonry based on this excellent article by Ana Tudor (@anatudor) on CSS Tricks: <a href="https://css-tricks.com/a-lightweight-masonry-solution">https://css-tricks.com/a-lightweight-masonry-solution</a>
-    </p>
-  </div>
-
-
-  <Masonry stretchFirst={true} gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'}>
-    {#each data as o}
-      <div class="_card _padding">
-        <header>
-          <h3>{o.name}</h3>
-        </header>
-        <section>
-          <p>{o.text}</p>
-        </section>
-      </div>
-    {/each}
-  </Masonry>
-
-</template>
-
-
-
-
-<script>
-
-// https://css-tricks.com/a-lightweight-masonry-solution
-import { onMount, onDestroy, getContext, setContext } from 'svelte'
+<script> 
+ 
+// Sources:
+//  https://github.com/janzheng/svelte-masonry#readme
+// Based on:
+//  https://css-tricks.com/a-lightweight-masonry-solution
+// import Masonry from 'svelte-masonry@latest/Masonry.svelte'
+// import Masonry from './Masonry.svelte'
 import Masonry from '../../Masonry.svelte'
 
-
-// useMasonry(document, getComputedStyle, onMount, onDestroy)
+let itemCount = 2
 
 let data = [
   {
@@ -83,12 +53,84 @@ let data = [
       date: '17th of February 2020', 
       tags: ['pie', 'apple', 'moist'], 
       text: 'Lollipop cheesecake sugar plum macaroon fruitcake. Powder muffin jelly beans carrot cake sweet roll gingerbread powder. Brownie brownie carrot cake gummi bears cotton candy cookie candy topping topping.'
-  }
+  }, 
+  {
+      name: 'Cupcake', 
+      date: '17th of February 2020', 
+      tags: ['cupcake', 'moist'], 
+      text: 'Lollipop cheesecake sugar plum macaroon fruitcake. Powder muffin jelly beans carrot cake sweet roll gingerbread powder. Brownie brownie carrot cake gummi bears cotton candy cookie candy topping topping.'
+  }, 
+  {
+      name: 'Waffles', 
+      tags: ['waffles'], 
+      text: 'Gummi bears cake wafer gummies donut chocolate bar soufflé gummies sesame snaps. Chocolate marshmallow bear claw croissant icing pudding halvah chocolate cake ice cream. Lollipop sesame snaps ice cream tart candy canes macaroon powder biscuit.'
+  }, 
+  {
+      name: 'Banana bread', 
+      tags: ['banana', 'bread', 'moist'], 
+      text: 'Chocolate bar apple pie bonbon. Jelly-o danish gummi bears marshmallow. Brownie cake cheesecake sweet bear claw caramels chocolate cake macaroon.'
+  }, 
+  {
+      name: 'Rhubarb Pie', 
+      date: '17th of February 2020', 
+      tags: ['pie', 'apple', 'moist'], 
+      text: 'Cookie brownie jelly-o sweet roll. Topping icing halvah icing tart sweet halvah marshmallow chupa chups. Gummies cookie toffee.'
+  }, 
+  {
+      name: 'Mustard cake', 
+      date: '17th of February 2020', 
+      tags: ['mustard','party'], 
+      text: 'Mustard is the secret ingredient in a mustard cake.'
+  }, 
 ]
-
-
-
 
 </script>
 
 
+
+
+
+
+
+
+
+
+<h1>Masonry Demo</h1>
+
+    <p>Here's a pretty basic demo on how this Masonry component code works (<a href="https://github.com/janzheng/svelte-masonry#readme">get it here</a>). Make this window wider to see what happens! This is an implementation of Masonry based on this excellent article by Ana Tudor (@anatudor) on CSS Tricks: <a href="https://css-tricks.com/a-lightweight-masonry-solution">https://css-tricks.com/a-lightweight-masonry-solution</a>
+    </p>
+
+<div class="_sticky">
+  <button on:click={()=>(itemCount<data.length?itemCount+=1:undefined)}>
+    Add Food!
+  </button>
+  Showing foods: {itemCount} of out {data.length}
+</div>
+
+<Masonry stretchFirst={true} gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={data.slice(0,itemCount)}>
+    {#each data.slice(0,itemCount) as o}
+      <div class="_card _padding">
+        <header>
+          <h3>{o.name}</h3>
+        </header>
+        <section>
+          <p>{o.text}</p>
+        </section>
+      </div>
+    {/each}
+</Masonry>
+
+<style>
+  ._padding {
+    padding: 12px;
+  }
+  
+  ._card {
+    border: 1px solid #ccc
+  }
+  
+  ._sticky {
+    position: sticky;
+    top: 12px;
+  }
+</style>
