@@ -33,7 +33,6 @@
     "@babel/runtime": "^7.9.2",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
-    "node-sass": "^4.14.0",
     "polka": "next",
     "sirv": "^0.4.0"
   },
@@ -47,7 +46,6 @@
     "@rollup/plugin-replace": "^2.2.0",
     "autoprefixer": "^9.7.6",
     "babel-plugin-transform-node-env-inline": "^0.4.3",
-    "coeur": "^0.2.292",
     "dotenv": "^8.2.0",
     "fs": "^0.0.1-security",
     "npm-run-all": "^4.1.5",
@@ -57,7 +55,6 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-svelte": "^5.0.1",
