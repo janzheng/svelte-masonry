@@ -8,6 +8,8 @@ Here's a REPL demo: https://svelte.dev/repl/d5ff70834832498882d1570b9355561e?ver
 
 Nov 17, 2023 Update: Updated this thing to be Sveltekit / Svelte Package friendly, but not sure I did it right. Also added an async loading example that worked, and got rid of all the other vuln errors. Might have broken previous (svelte-masonry@0.0.18) releases.
 
+Demo here: https://svelte-masonry-one.vercel.app/
+
 
 
 
