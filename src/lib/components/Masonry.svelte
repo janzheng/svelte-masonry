@@ -1,7 +1,9 @@
 <!-- 
   An almost direct copy and paste of: https://css-tricks.com/a-lightweight-masonry-solution
+  
   Usage:
     - stretchFirst stretches the first item across the top
+
   <Masonry stretchFirst={true} >
     {#each data as o}
       <div class="_card _padding">
@@ -36,7 +38,15 @@ export let  stretchFirst = false,
             items = [] // pass in data if it's dynamically updated
 let grids = [], masonryElement
 
+
+export let reset;
+$: if(reset) {
+  masonryElement = masonryElement
+}
+
+
 export const refreshLayout = async () => {
+  // console.log("REFRESHING LAYOUT")
   grids.forEach(async grid => {
     /* get the post relayout number of columns */
     let ncol = getComputedStyle(grid._el).gridTemplateColumns.split(' ').length
@@ -75,13 +85,13 @@ const calcGrid = async (_masonryArr) => {
   await tick()
   if(_masonryArr.length && getComputedStyle(_masonryArr[0]).gridTemplateRows !== 'masonry') {
     grids = _masonryArr.map(grid => {
-        return {
-          _el: grid, 
-          gap: parseFloat(getComputedStyle(grid).gridRowGap),
-          items: [...grid.childNodes].filter(c => c.nodeType === 1 && +getComputedStyle(c).gridColumnEnd !== -1), 
-          ncol: 0, 
-          mod: 0
-        }
+      return {
+        _el: grid, 
+        gap: parseFloat(getComputedStyle(grid).gridRowGap),
+        items: [...grid.childNodes].filter(c => c.nodeType === 1 && +getComputedStyle(c).gridColumnEnd !== -1), 
+        ncol: 0, 
+        mod: 0
+      }
     })
     refreshLayout() /* initial load */
   }

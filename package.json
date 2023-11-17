@@ -1,69 +1,47 @@
 {
-  "name": "svelte-masonry",
+	"name": "svelte-masonry",
   "description": "Basic implementation of Masonry for svelte",
-  "version": "0.0.17",
-  "svelte": "Masonry.svelte",
+  "license": "MIT",
+  "version": "0.1.1",
   "repository": "https://github.com/janzheng/svelte-masonry",
   "author": "Jan Zheng",
-  "license": "none",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build && npm run package",
+		"preview": "vite preview",
+		"package": "svelte-kit sync && svelte-package",
+    "commit": "git add . -A ; git commit ; git push origin master ",
+		"prepublishOnly": "npm run package"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"peerDependencies": {
+		"svelte": "^4.0.0"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.27.4",
+		"@sveltejs/package": "^2.0.0",
+		"publint": "^0.1.9",
+		"svelte": "^4.0.5",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"vite": "^4.4.2"
+	},
+	"svelte": "./dist/index.js",
   "keywords": [
-    "svelte", "masonry"
+    "svelte",
+    "masonry"
   ],
-  "files": [
-    "Masonry.svelte"
-  ],
-
-  "scripts": {
-    "dev": "sapper dev --port 3579",
-    "zeit-notes": "zeit has problems building on their end, but 'zeit prod' does it locally. Requires build to use export, but old sapper build is: sapper build --legacy",
-    "build": "ls && sapper build --legacy",
-    "export": "sapper export --legacy",
-    "start": "node __sapper__/build",
-    "test": "run-p --race dev cy:run",
-    "prod": "ls && sapper build --legacy; now",
-    "commit": "git add . -A ; git commit ; git push origin master "
-  },
-  "engines": {
-    "node": "12.x"
-  },
-  "browser": {
-    "airtable": "./node_modules/airtable/build/airtable.browser"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.9.2",
-    "body-parser": "^1.19.0",
-    "compression": "^1.7.4",
-    "node-sass": "^4.14.0",
-    "polka": "next",
-    "sirv": "^0.4.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.0.0",
-    "@rollup/plugin-commonjs": "11.0.2",
-    "@rollup/plugin-node-resolve": "^7.0.0",
-    "@rollup/plugin-replace": "^2.2.0",
-    "autoprefixer": "^9.7.6",
-    "babel-plugin-transform-node-env-inline": "^0.4.3",
-    "coeur": "^0.2.292",
-    "dotenv": "^8.2.0",
-    "fs": "^0.0.1-security",
-    "npm-run-all": "^4.1.5",
-    "path": "^0.12.7",
-    "rollup": "^1.20.0",
-    "rollup-plugin-auto-external": "^2.0.0",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-sass": "^1.2.2",
-    "rollup-plugin-svelte": "^5.0.1",
-    "rollup-plugin-terser": "^5.3.0",
-    "sapper": "^0.27.0",
-    "svelte": "^3.0.0",
-    "svelte-preprocess": "^3.7.4"
-  }
+	"types": "./dist/index.d.ts",
+	"type": "module"
 }
