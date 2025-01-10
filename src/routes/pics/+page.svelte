@@ -55,7 +55,7 @@
 <div class="mx-8">
   <h1>Masonry Async Loading Demo</h1>
   <p>
-    Here's a basic demo of async loading thanks to <a href="https://github.com/janzheng/svelte-masonry/issues/2">@ambrt / issue #2</a>. 
+    Here's a basic demo of async loading thanks to <a href="https://github.com/janzheng/svelte-masonry/issues/2">@ambrt / issue #2</a>. Images are loaded from <a href="https://picsum.photos/">picsum.photos</a>. 
     For proper async image loading, note that we bind to refreshLayout and trigger it on each image load: 
     <code>bind:refreshLayout</code> and <code>on:load=&lcub;refreshLayout&rcub;</code>.
   </p>

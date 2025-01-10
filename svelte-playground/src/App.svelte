@@ -1,6 +1,5 @@
 <script>
-	export let name;
-  import { Masonry } from 'svelte-masonry';
+  import Masonry from 'svelte-masonry';
   import { foods as data } from './foods.js';
 
   let itemCount = 2;
