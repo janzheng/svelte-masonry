@@ -2,31 +2,33 @@
 	"name": "svelte-masonry",
 	"description": "Basic implementation of Masonry for svelte",
 	"license": "MIT",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"repository": "https://github.com/janzheng/svelte-masonry",
 	"author": "Jan Zheng",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "svelte": "src/lib/components/Masonry.svelte",
-  "types": "dist/index.d.ts",
-  "type": "module",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"svelte": "src/lib/components/Masonry.svelte",
+	"types": "dist/index.d.ts",
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
 		"package": "vite build --config vite.lib.config.js",
-		"commit": "git add . -A ; git commit ; git push origin master ",
-		"prepublishOnly": "npm run package"
+    "surge": "surge build svelte-masonry.surge.sh",
+		"commit": "git add . -A ; git commit ; git push origin master "
 	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./src/lib/components/Masonry.svelte",
-			"default": "./dist/index.js"
+			"import": "./dist/index.js",
+			"require": "./dist/index.umd.js"
 		}
 	},
 	"files": [
 		"dist",
+		"src",
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
@@ -35,11 +37,13 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.3.1",
+		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.15.2",
 		"@sveltejs/package": "^2.3.7",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"publint": "^0.1.9",
 		"svelte": "^5.17.3",
+		"svelte-masonry": "^0.1.4",
 		"tslib": "^2.8.1",
 		"typescript": "^5.7.3",
 		"vite": "^6.0.7"

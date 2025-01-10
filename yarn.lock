@@ -279,6 +279,11 @@
   dependencies:
     import-meta-resolve "^4.1.0"
 
+"@sveltejs/adapter-static@^3.0.8":
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-static/-/adapter-static-3.0.8.tgz#f23ee99a9678dbaec58b79d183bc3defbfe99f1a"
+  integrity sha512-YaDrquRpZwfcXbnlDsSrBQNCChVOT9MGuSg+dMAyfsAa1SmiAhrA5jUYUiIMC59G92kIbY/AaQOWcBdq+lh+zg==
+
 "@sveltejs/kit@^2.15.2":
   version "2.15.2"
   resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-2.15.2.tgz#a6e9357856089da5233bdbf03e8d4cb7483a0c49"
@@ -701,6 +706,11 @@ source-map-js@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
   integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
+
+svelte-masonry@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/svelte-masonry/-/svelte-masonry-0.1.4.tgz#88c0cdf1a7847edb5dd0dfee57d2beae340de1b9"
+  integrity sha512-a9ukNpVPfLiSPDPmx6tDNdY2s3KP1q2GTQokiuTOnnjZTkua3XNMdhDbe71PALNNIvanh7HB8rA80FAyBYbDaw==
 
 svelte2tsx@~0.7.16:
   version "0.7.34"
